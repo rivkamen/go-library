@@ -1,77 +1,105 @@
-# To-Do List Application (Angular)
+# GoLang Developer Code Review
 
-## 🚀 Overview
-This is a **To-Do List Application** built using **Angular**, featuring state management with **NgRx**, animations, and local storage support. Users can add, delete, and filter tasks, with smooth UI interactions.
+## GoLang Coding Assessment: REST API Implementation
 
-## 📌 Features
-- ✅ Add new tasks with a title and description
-- ✅ Mark tasks as completed or incomplete
-- ✅ Delete tasks
-- ✅ Filter tasks (All, Completed, Incomplete)
-- ✅ Animations for adding and removing tasks
-- ✅ Persistent storage using `localStorage`
-- ✅ State management using **NgRx**
+### Objective
+Build a simple REST API for a library system that manages books and authors.
 
-## 🛠️ Technologies Used
-- **Angular** (v17+)
-- **NgRx** for state management
-- **Angular Animations** for smooth UI interactions
-- **LocalStorage** for data persistence
-- **TypeScript & SCSS**
+## Features & Requirements
 
-## 📂 Project Structure
-```
-📦 todo-app
- ┣ 📂 src
- ┃ ┣ 📂 app
- ┃ ┃ ┣ 📂 components
- ┃ ┃ ┃ ┣ 📂 add-to-do       # Add task component
- ┃ ┃ ┃ ┣ 📂 to-do-item      # Single task component
- ┃ ┃ ┃ ┣ 📂 to-do-list      # Task list component
- ┃ ┃ ┣ 📂 services
- ┃ ┃ ┃ ┗ to-do.service.ts   # Handles task logic & local storage
- ┃ ┃ ┣ 📂 store
- ┃ ┃ ┃ ┣ 📂 actions         # NgRx actions
- ┃ ┃ ┃ ┣ 📂 reducers        # NgRx reducers
- ┃ ┃ ┃ ┣ 📂 effects         # NgRx effects (if used)
- ┃ ┃ ┃ ┗ app.state.ts       # Central store
- ┃ ┃ ┣ 📄 app.config.ts      # Application configuration
- ┃ ┃ ┣ 📄 app.routes.ts      # Routing setup
- ┃ ┃ ┗ 📄 main.ts            # Main entry file
-```
+### API Endpoints
 
-## 🚀 Installation & Setup
-### 1️⃣ Clone the Repository
+- **POST /books** - Add a new book. The request should include:
+
+  ```json
+  {
+    "title": "Book Title",
+    "author": "Author Name",
+    "publishedYear": 2022
+  }
+  ```
+
+- **GET /books** - Retrieve all books.
+- **GET /books/{id}** - Retrieve a book by its ID.
+- **DELETE /books/{id}** - Delete a book by its ID.
+
+### Implementation Details
+
+- Use **Gorilla Mux** (or any preferred router library) for routing.
+- Store data in memory using a map or a slice.
+- Implement basic error handling:
+  - Return **404 Not Found** if the book does not exist.
+  - Return appropriate status codes for all operations.
+
+### Bonus Features
+
+- Add **search functionality** (e.g., `/books?author=Author Name`).
+- Use proper **Go practices**, such as structuring the project into packages.
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have Go installed on your system. You can download it from [Go's official site](https://golang.org/dl/).
+
+### Installation & Setup
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/golang-library-api.git
+   cd golang-library-api
+   ```
+
+2. Install dependencies:
+   ```sh
+   go mod tidy
+   ```
+
+3. Run the application:
+   ```sh
+   go run main.go
+   ```
+
+4. The API should now be running at `http://localhost:8080`.
+
+### Running Tests
+
+Run unit tests using the built-in Go testing package:
 ```sh
-git clone https://github.com/your-username/todo-app.git
-cd todo-app
+  go test ./...
 ```
 
-### 2️⃣ Install Dependencies
-```sh
-npm install
+## Project Structure
+
+```
+├── main.go
+├── handlers
+│   ├── book_handler.go
+├── models
+│   ├── book.go
+├── routes
+│   ├── routes.go
+├── storage
+│   ├── memory_storage.go
+├── tests
+│   ├── book_handler_test.go
+├── go.mod
+└── go.sum
 ```
 
-### 3️⃣ Run the Application
-```sh
-ng serve
-```
-Then, open your browser and go to: `http://localhost:4200`
+## Technologies Used
+- **Go** - Programming language
+- **Gorilla Mux** - Router library for handling endpoints
+- **Testing package** - Built-in Go testing
 
-## 📝 Usage
-- **Add a Task**: Enter a title and optional description, then click **Add**.
-- **Filter Tasks**: Use the filter buttons to view **All**, **Completed**, or **Incomplete** tasks.
-- **Complete a Task**: Click on a task to mark it as **completed**.
-- **Delete a Task**: Click the **delete** button to remove a task.
+## Future Enhancements
+- Connect to a database (PostgreSQL, MongoDB, etc.) instead of in-memory storage.
+- Implement authentication and authorization.
+- Deploy to a cloud service.
 
-## 🎯 Bonus Features
-✔ **State Management with NgRx** for managing tasks globally.
-✔ **Data Persistence with localStorage**, ensuring tasks remain after a page refresh.
-✔ **Smooth UI Animations** when adding and removing tasks.
-
-## 📜 License
-This project is licensed under the **MIT License**.
+## License
+This project is open-source and available under the [MIT License](LICENSE).
 
 ---
-Made with ❤️ using **Angular**.
-
+### Author
+[Your Name](https://github.com/yourusername)
